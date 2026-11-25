@@ -1,0 +1,202 @@
+@font-face {
+    font-family: Ubuntu;
+    src: url('../../fonts/Ubuntu-R.ttf');
+}
+
+#text {
+    font-size: 1.25em;
+}
+.crc-video {
+    width: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+}
+
+#defVideo {
+    position: absolute;
+}
+
+#actVideo {
+    position: absolute;
+}
+
+video {
+    object-fit: contain;
+}
+
+#videoContainer {
+    position: relative;
+    clear: left;
+    padding-bottom: 115%;
+    height: 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+p {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#image {
+    /*width: 360px;
+    height: 285px;*/
+    width: 97%;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#NextButton {
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+    transition: background .3s;
+    background-color: #3700B3;
+    float: right;
+}
+
+
+
+.Menu {
+    position: relative;
+    width: 100%;
+    /*background-color: #3700B3;*/
+    background-color: #6200EE;
+    float: left;
+}
+
+.btn-circle {
+    border-radius: 50%;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+}
+
+#startingButton {
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding: 10px;
+    height: 440px;
+    width: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://mychart.shands.org/mychartprd/en-US/images/loginlogo.png');
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-size: contain;
+}
+
+#secureBlock {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 330px;
+    text-align: center;
+    font-size: smaller;
+}
+
+#startButton {
+    border-radius: 50%;
+    text-align: center;
+    height: 130px;
+    width: 130px;
+    /*background-color: #e5ae54;*/
+    background-color: #03DAC5;
+    /*border-color: #f4ddb8;*/
+    border-color: #03DAC5;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: Calibri,Arial,sans-serif;
+}
+
+.btn-grey {
+    cursor: pointer;
+    background: rgba(0,0,0,.06);
+    border: none;
+    transition: background .2s ease-in-out;
+}
+
+#close-button {
+    color: #fff;
+    background-color: #6200EE;
+    border-color: #6200EE;
+}
+
+.choice-buttons {
+    background-color: #03DAC5;
+    border-color: #03DAC5;
+    color: black;
+}
+
+/*#SurveyButtonDiv {
+    position: absolute;
+    top: 50%;
+}*/
+
+#InteractionEndText {
+    text-align: center;
+    font-family: Ubuntu;
+    margin: auto;
+    line-height: 3.8vh;
+    font-size: 3.0vh;
+    font-weight: normal;
+    height:30vh;
+    padding-top:20vh;
+}
+#SurveyCode {
+    text-align: center;
+    font-family: Ubuntu;
+    margin: auto;
+    line-height: 6.8vh;
+    font-size: 6.0vh;
+    font-weight: 700;
+    height: 30vh;
+    padding-top: 10vh;
+}
+
+#surveyFrame {
+    /*position: fixed;*/
+    left: 0;
+}
+
+/* #### Tablets Portrait or Landscape #### */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+
+/* #### Desktops #### */
+@media screen and (min-width: 1024px) {
+    #text {
+        font-size: 2em;
+    }
+
+    .crc-video {
+        height: 100%;
+    }
+    #image {
+        width: 360px;
+        height: 285px;
+        /*width: 100%;*/
+        float: left;
+        margin-top: 5px;
+        /*margin-left: 5px;
+    margin-right: 5px;*/
+    }
+    #videoContainer {
+        position: relative;
+        clear: left;
+        padding-bottom: 10em;
+        height: 65vh;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

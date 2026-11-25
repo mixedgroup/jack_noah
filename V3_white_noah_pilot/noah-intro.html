@@ -1,0 +1,577 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href='./css/font-awesome/css/font-awesome.min.css' rel="stylesheet" type="text/css" />
+    <style>
+
+        .rounded-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-family: 'Lato', 'Roboto', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .rounded-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        @font-face {
+            font-family: 'Aptos';
+            src: url('css/fonts/aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .custom-font {
+                /*font-family: 'Aptos', sans-serif;*/
+                font-family: 'Lato', 'Roboto', sans-serif;
+                font-size: 16px; /* Adjust size as needed */
+                /*font-weight: bold; /* Optional */
+                color: #2a2a2a; /* Ensures the text is black */
+                line-height: 1.75; /* Adjust this value as needed */
+        }
+
+        .modal {
+            top: 0;
+            left: 0;
+            margin: 0px;
+        }
+
+        /* Custom styles for modal-body */
+        .modal-body {
+            height: auto;        /* Make the height flexible */
+            max-height: 80vh;    /* Limit the height to 80% of the viewport height */
+            overflow-y: auto;    /* Allow scrolling if content overflows */
+        }
+
+        body {
+            background: none;
+        }
+
+        img{
+            border: 5px solid rgba(0, 0, 0, 0.16);
+        }
+
+        .full-page {
+            display: table;
+            height: 100%;
+            position: relative;
+            width: 80%;
+        }
+
+        .white-font {
+            color: white;
+        }
+
+        .circle-btn {
+            border: 0;
+            outline: none;
+            /*box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);*/
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            z-index: 100;
+        }
+
+        .circle-btn-big {
+            width: 100px;
+            height: 100px;
+            font-size: 30px;
+        }
+
+        .blue {
+            background-color: #007BFF;
+        }
+
+        .green {
+            background-color: #007BFF;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: inherit;
+        }
+
+        .shadow-top-z1 {
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+        }
+
+        .shadow-bottom-z1 {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
+
+        .shadow-top-z2 {
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .shadow-bottom-z2 {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .hoverable:hover {
+            cursor: pointer;
+        }
+
+        a:link,
+        a:visited {
+            color: #007BFF; /* Bootstrap blue, looks modern */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3; /* darker on hover */
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #004080; /* optional: pressed state */
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="beepAudio">
+        <source src="beep.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="bernie-intro" class="modal" style="width:98%; height:98%;">
+        <div class="modal-header">
+            <h3>Welcome</h3>
+        </div>
+        <div class="modal-body">
+       
+ <div id="back_intro1" class="alert alert-info" style="display: flex; align-items: center; justify-content: space-between;">
+    <!-- Video on the left -->
+    <video id="myVideo1" width="45%" height="auto" controls muted>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <br /><br />
+    
+
+
+    <!-- Text content on the right, with a narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+        <!-- Button to start the video -->
+        <br /><br />
+        
+        <button id="startButton" class="circle-btn blue" onclick="startVideo()">
+        <i class="fa fa-play white-font"></i>
+        </button>
+
+        <br /><br />
+        <b class="custom-font">
+            Dear clinician, welcome to the virtual patient pilot clinical training!
+            <br /><br />
+            We are very grateful for your participation, which will help us develop an AI-based virtual patient training tool in clinical interviewing and suicide risk assessment.
+        </b>
+    </div>
+</div>
+
+<!-- Adjusted text block for back_intro2 with video on the left and narrower text block -->
+<div id="back_intro2" class="alert alert-info" style="display: none; align-items: center; justify-content: space-between;">
+    <!-- Video on the left -->
+    <video id="myVideo2" width="45%" height="auto" controls autoplay>
+        <source src="video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Text content on the right, narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+        <b class="custom-font">
+            In this pilot training, we will ask you to conduct an initial clinical interview with the patient in order to assess their main problem and their risk level. We encourage you to apply what you learned in class. 
+            <br /><br />
+            After the interaction, we will ask you to complete a 15 min survey collecting your feedback about your interaction with the virtual patient and we will also provide you with descriptive feedback (a summary) on your interaction with the virtual patient, which will focus on the interview process and your approach.
+            <br /><br />
+        </b>
+    </div>
+</div>
+
+<!-- Adjusted text block for back_intro3 with video on the left and narrower text block -->
+<div id="back_intro3" class="alert alert-info" style="display: none; align-items: center; justify-content: space-between;">
+    <!-- Video on the left -->
+    <video id="myVideo3" width="45%" height="auto" controls autoplay>
+        <source src="video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Text content on the right, narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+        <b class="custom-font">
+            On the interaction screen, you will see your virtual patient. On the top left of the screen, you will be provided with basic information about the patient.
+            <br /><br />
+            On the right, you will see a dialogue window labeled “Chat History”.
+            <br /><br />
+            The virtual patient can talk, but he cannot understand spoken language. Therefore, please type your questions in the dialogue window. Every time you type a question, your virtual patient will respond orally.
+            <br /><br />
+            On the bottom left of the screen, you will see an End Interview button. Please click the button when you finish the interaction with the virtual patient.
+        </b>
+    </div>
+</div>
+
+
+<div id="back_intro4" class="alert alert-info" style="display: none; align-items: center; justify-content: space-between;">
+            
+    <!-- Video on the left -->
+    <video id="myVideo4" width="45%" height="auto" controls autoplay>
+        <source src="video4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+        <!-- Text content on the right, narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+                <b class="custom-font">
+                    A few tips to make your interview easier:
+                    <br /><br />
+                    <ol type="1">
+
+                        <li>Remember that this is a <b>virtual patient</b>. Sometimes, he may not understand your question. Additionally, the virtual patient cannot understand blended statements with several questions. Please ask one question at a time. 
+                        <br /><br />
+                          For example, the virtual patient struggles to understand blended statements with an empathic statement AND a question. Please separate them. In addition, instead of saying: “I am sorry to hear that, please tell me more about your mood”. Say: “I am sorry to hear that”. The virtual patient will answer. Then, after the virtual patient has answered, you may ask: “Please tell me more about your mood”.</li>
+                        <br /></li>
+                        <li>The virtual patient needs specific questions. Instead of asking "Why is that?" or "Why?", please provide more information. You may ask: "why are you upset?" or "why do you hate such and such...?" </li>
+                        <br />
+                        <li>If the virtual patient provides an answer that does not make sense to you, please ignore it and continue your interview. This may happen a few times, and will help us improve the artificial intelligence algorithm that is powering the virtual patient. </li>
+                        <br />
+                    </ol>
+                </b>
+            </div>
+    </div>
+
+
+<div id="back_intro5" class="alert alert-info" style="display: none; align-items: center; justify-content: space-between;">
+            
+    <!-- Video on the left -->
+    <video id="myVideo5" width="45%" height="auto" controls autoplay>
+        <source src="video5.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+        <!-- Text content on the right, narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+                 <br /><br />
+                    <b class="custom-font">
+                        Before you start the interaction with the virtual patient, please complete the Before Interaction Survey. Press the button to begin.
+                    </b>
+                    <br /><br />
+                    <br /><br />
+                   <!-- <a href="https://msbiresearch.iad1.qualtrics.com/jfe/form/SV_bJZZfUAb7zcjqcu" target="_blank"> -->
+                    <!-- <a href="https://msbiresearch.iad1.qualtrics.com/jfe/form/SV_bNRQSKLJdXi2H9Y" target="_blank"> 
+                        <button class="rounded-btn" type="button">Before Interaction Survey</button> -->
+                    <a href=" https://msbiresearch.iad1.qualtrics.com/jfe/form/SV_0qFdE0SKpZetI5o" target="_blank"> 
+                        <button class="rounded-btn" type="button">Before Interaction Survey</button>
+
+                    </a>
+                <br /><br />
+            </div>
+        </div>
+            
+<div id="back_intro6" class="alert alert-info" style="display:none; align-items: center; justify-content: space-between;">
+            
+    <!-- Video on the left -->
+    <video id="myVideo6" width="45%" height="auto" controls autoplay>
+        <source src="video6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+        <!-- Text content on the right, narrower width -->
+    <div style="width: 40%; padding-left: 20px;">
+                <b class="custom-font">
+                    Do you have any questions?
+                    <br /><br />
+                    If not, the interaction will start as soon as you click on the button below. As soon as you do, you will hear a sound which means that your virtual patient is ready to talk to you.
+                </b>
+                <br /><br />
+                <br /><br />
+                   <button id="start-interact" class="rounded-btn" type="button" style="display: none;" onclick="startInteract()">Start Interaction</button>
+
+            </div>
+            </div>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        <button id="tointro2" class="circle-btn green" style="margin-left: 95%;" type="button" onclick="goToIntro2()">
+                            <i class="fa fa-chevron-right white-font"></i>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        <button id="backtointro1" class="circle-btn green" style="margin-left: 0%; display:none" type="button" onclick="goBackIntro1()">
+                            <i class="fa fa-chevron-left white-font"></i>
+                        </button>
+                    </th>
+                    <th>
+                        <button id="tointro3" class="circle-btn green" style="margin-left: 90%; display:none" type="button" onclick="goToIntro3()">
+                            <i class="fa fa-chevron-right white-font"></i>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        <button id="backtointro2" class="circle-btn green" style="margin-left: 0%; display:none" type="button" onclick="goBackIntro2()">
+                            <i class="fa fa-chevron-left white-font"></i>
+                        </button>
+                    </th>
+                    <th>
+                        <button id="tointro4" class="circle-btn green" style="margin-left: 90%; display:none" type="button" onclick="goToIntro4()">
+                            <i class="fa fa-chevron-right white-font"></i>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        <button id="backtointro3" class="circle-btn green" style="margin-left: 0%; display:none" type="button" onclick="goBackIntro3()">
+                            <i class="fa fa-chevron-left white-font"></i>
+                        </button>
+                    </th>
+                    <th>
+                        <button id="tointro5" class="circle-btn green" style="margin-left: 90%; display:none" type="button" onclick="goToIntro5()">
+                            <i class="fa fa-chevron-right white-font"></i>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        <button id="backtointro4" class="circle-btn green" style="margin-left: 0%; display:none" type="button" onclick="goBackIntro4()">
+                            <i class="fa fa-chevron-left white-font"></i>
+                        </button>
+                    </th>
+                    <th>
+                        <button id="tointro6" class="circle-btn green" style="margin-left: 90%; display:none" type="button" onclick="goToIntro6()">
+                            <i class="fa fa-chevron-right white-font"></i>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        <button id="backtointro5" class="circle-btn green" style="margin-left: 0%; display:none" type="button" onclick="goBackIntro5()">
+                            <i class="fa fa-chevron-left white-font"></i>
+                        </button>
+                    </th>
+
+                    <th>
+
+                    </th>
+                </tr>
+            </table>
+
+
+            <button style="margin-left:90%; display:none" id="bernie-okay" class="btn btn-primary" type="button" onclick="startEvent()">Start the Interaction</button>
+        </div>
+
+        <div id="interface" style="align-content:center; display:none; height:auto">
+            <img src="./interface4.jpg" alt="Interface" style="width:50%; margin-left:25%; height:auto">
+        </div>
+    </div>
+    <script>
+        function startEvent() {
+            window.parent.document.getElementById('btn-clickagree').click();
+        }
+        function goToIntro2() {
+            document.getElementById('back_intro1').style.display = "none";
+            document.getElementById('back_intro2').style.display = "flex";
+            document.getElementById('tointro2').style.display = "none";
+            document.getElementById('backtointro1').style.display = "block";
+            document.getElementById('tointro3').style.display = "block";
+            document.getElementById('interface').style.display = "none";
+            document.getElementById('myVideo1').pause();
+        }
+        function goToIntro3() {
+            document.getElementById('back_intro3').style.display = "flex";
+            document.getElementById('back_intro2').style.display = "none";
+            document.getElementById('interface').style.display = "flex";
+            document.getElementById('tointro3').style.display = "none";
+            document.getElementById('backtointro1').style.display = "none";
+            document.getElementById('tointro4').style.display = "block";
+            document.getElementById('backtointro2').style.display = "block";
+            document.getElementById('myVideo2').pause();
+        }
+        function goToIntro4() {
+            document.getElementById('back_intro3').style.display = "none";
+            document.getElementById('back_intro4').style.display = "flex";
+            document.getElementById('interface').style.display = "none";
+            document.getElementById('tointro5').style.display = "block";
+            document.getElementById('backtointro3').style.display = "block";
+            document.getElementById('tointro4').style.display = "none";
+            document.getElementById('backtointro2').style.display = "none";
+            document.getElementById('myVideo3').pause();
+        }
+        function goToIntro5() {
+            document.getElementById('back_intro4').style.display = "none";
+            document.getElementById('interface').style.display = "none";
+            document.getElementById('tointro5').style.display = "none";
+            document.getElementById('backtointro3').style.display = "none";
+            document.getElementById('back_intro5').style.display = "flex";
+            //document.getElementById('tointro6').style.display = "block";
+            document.getElementById('tointro6').style.display = "block";
+            document.getElementById('backtointro4').style.display = "block";
+            document.getElementById('myVideo4').pause();
+        }
+        function goToIntro6() {
+            document.getElementById('back_intro5').style.display = "none";
+            document.getElementById('tointro6').style.display = "none";
+            document.getElementById('backtointro4').style.display = "none";
+            document.getElementById('back_intro6').style.display = "flex";
+            document.getElementById('backtointro5').style.display = "block";
+            document.getElementById('start-interact').style.display = "block";
+            document.getElementById('myVideo5').pause();
+        }
+//        function goToIntro7() {
+//            document.getElementById('back_intro6').style.display = "none";
+//            document.getElementById('tointro7').style.display = "none";
+//            document.getElementById('backtointro5').style.display = "none";
+//            document.getElementById('back_intro7').style.display = "block";
+//            document.getElementById('backtointro6').style.display = "block";
+//            document.getElementById('start-interact').style.display = "block";
+//        }
+//        function goBackIntro6() {
+//            document.getElementById('back_intro6').style.display = "block";
+//            document.getElementById('backtointro5').style.display = "block";
+//            document.getElementById('tointro7').style.display = "block";
+//            document.getElementById('back_intro7').style.display = "none";
+//            document.getElementById('backtointro6').style.display = "none";
+//            document.getElementById('start-interact').style.display = "none";
+//        }
+        function goBackIntro5() {
+            document.getElementById('back_intro5').style.display = "flex";
+            document.getElementById('backtointro4').style.display = "block";
+            document.getElementById('tointro6').style.display = "block";
+            document.getElementById('back_intro6').style.display = "none";
+            document.getElementById('backtointro5').style.display = "none";
+            document.getElementById('start-interact').style.display = "none";
+            document.getElementById('myVideo6').pause();
+        }
+        function goBackIntro4() {
+            document.getElementById('interface').style.display = "none";
+            document.getElementById('back_intro4').style.display = "flex";
+            document.getElementById('tointro5').style.display = "block";
+            document.getElementById('backtointro3').style.display = "block";
+            document.getElementById('back_intro5').style.display = "none";
+            document.getElementById('backtointro4').style.display = "none";
+            document.getElementById('tointro6').style.display = "none";
+            document.getElementById('myVideo5').pause();
+        }
+        function goBackIntro3() {
+            document.getElementById('back_intro4').style.display = "none";
+            document.getElementById('interface').style.display = "flex";
+            document.getElementById('back_intro3').style.display = "flex";
+            document.getElementById('backtointro3').style.display = "none";
+            document.getElementById('tointro5').style.display = "none";
+            document.getElementById('backtointro2').style.display = "block";
+            document.getElementById('tointro4').style.display = "block";
+            document.getElementById('myVideo4').pause();
+        }
+        function goBackIntro2() {
+            document.getElementById('back_intro3').style.display = "none";
+            document.getElementById('back_intro2').style.display = "flex";
+            document.getElementById('backtointro1').style.display = "block";
+            document.getElementById('tointro3').style.display = "block";
+            document.getElementById('backtointro2').style.display = "none";
+            document.getElementById('tointro4').style.display = "none";
+            document.getElementById('interface').style.display = "none";
+            document.getElementById('myVideo3').pause();
+        }
+        function goBackIntro1() {
+            document.getElementById('back_intro1').style.display = "flex";
+            document.getElementById('back_intro2').style.display = "none";
+            document.getElementById('backtointro1').style.display = "none";
+            document.getElementById('tointro3').style.display = "none";
+            document.getElementById('tointro2').style.display = "block";
+            document.getElementById('myVideo2').pause();
+        }
+        function startInteract() {
+            document.getElementById('myVideo6').pause();
+            var x = document.getElementById("beepAudio");
+            x.play();
+            window.parent.document.getElementById('noah-intro').style.display = "none";
+        }
+    </script>
+        <!-- Autoplay script for videos -->
+    <script>
+        window.onload = function() {
+            // Play video for back_intro1
+        var video1 = document.getElementById('myVideo1');
+        if (video1) {
+            video1.muted = true;  // Start muted
+            video1.play();  // Autoplay
+            video1.muted = false;
+            // Listen for when the video starts playing and unmute it
+            };
+
+            // Play video for back_intro2
+            var video2 = document.getElementById('myVideo2');
+            if (video2.paused) {
+                video2.play();
+            }
+
+            // Play video for back_intro3
+            var video3 = document.getElementById('myVideo3');
+            if (video3.paused) {
+                video3.play();
+            }
+
+            // Play video for back_intro4
+            var video4 = document.getElementById('myVideo4');
+            if (video4.paused) {
+                video4.play();
+            }
+            // Play video for back_intro4
+            var video5 = document.getElementById('myVideo5');
+            if (video5.paused) {
+                video5.play();
+            }
+            // Play video for back_intro4
+            var video6 = document.getElementById('myVideo6');
+            if (video6.paused) {
+                video6.play();
+            }
+        }
+
+        function startVideo() {
+        var video1 = document.getElementById('myVideo1');
+        var startButton = document.getElementById('startButton');
+
+        if (video1) {
+        video1.play();  // Start the video playback
+        video1.muted = false;  // Unmute the video
+        startButton.style.display = 'none';  // Hide the button after click
+        }
+}
+    </script>
+</body>
+</html>

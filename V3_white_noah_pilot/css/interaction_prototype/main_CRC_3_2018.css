@@ -1,0 +1,199 @@
+﻿.crc-video {
+    width: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+}
+
+/*#videoDiv {
+    position: relative;
+    left: 0;
+}*/
+
+#defVideo {
+    position: absolute;
+}
+
+#overlay {
+    margin: 0 auto;
+    padding: 10px;
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    /*height: 95%;*/ /* Full height (cover the whole page) */
+    top: 62%;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+    background-color: rgba(255, 255, 255,1); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    border: 1px solid #ACD8F0;
+}
+
+#stagesOverlay {
+    margin: 0 auto;
+    padding: 10px;
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 50%; /* Full width (cover the whole page) */
+    /*height: 95%;*/ /* Full height (cover the whole page) */
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+    background-color: rgba(0, 0, 0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    border: 1px solid #ACD8F0;
+}
+
+
+
+#actVideo {
+    position: absolute;
+    /*top: 15%;
+    left: 0;*/
+}
+
+#videoContainer {
+    position: relative;
+    clear: left;
+    padding-bottom: 115%;
+    height: 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#buttons {
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #5bc0de;
+    /*color: white;*/
+    /*text-align: center;*/
+}
+
+.Menu {
+    position: relative;
+    /*left: 0;
+    top: 0;*/
+    width: 100%;
+    background-color: #5bc0de;
+    float: left;
+    /*color: white;
+    text-align: center;
+    }*/
+}
+
+.btn-circle {
+    border-radius: 50%;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+}
+
+/*body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0px;
+}
+.container-fluid,
+.row-fluid { height: inherit; }*/
+
+video {
+    object-fit: contain;
+}
+
+#chatlog {
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding: 10px;
+    bottom: 15%;
+    height: -moz-available; /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
+    width: 90%;
+    overflow: auto;
+    font-size: 1.1em;
+}
+
+#chatlog {
+    overflow: auto;
+}
+
+#startingButton {
+    margin: 0 auto;
+    margin-bottom: 5px;
+    /*border: 1px solid #ACD8F0;*/
+    /*border-radius: 50%;*/
+    /*background-color: aqua;*/
+    padding: 10px;
+    height: 440px;
+    width: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://mychart.shands.org/mychartprd/en-US/images/loginlogo.png');
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-size: contain;
+}
+
+#secureBlock {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 330px;
+    text-align: center;
+    font-size: smaller;
+}
+
+#startButton {
+    border-radius: 50%;
+    text-align: center;
+    height: 130px;
+    width: 130px;
+    background-color: #e5ae54;
+    border-color: #f4ddb8;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: Calibri,Arial,sans-serif;
+}
+
+#virtualCharacter {
+    color: #000000;
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+    line-height: 3.4vh;
+    font-size: 2vh;
+    margin-top: 20px;
+}
+
+#humanCharacter {
+    color: #5bc0de;
+    min-height: 3.4%;
+    margin-left: auto;
+    margin-right: 3%;
+    text-align: right;
+    line-height: 3.4vh;
+    font-size: 2vh;
+}
+/*.IIV::-webkit-media-controls-play-button,
+.IIV::-webkit-media-controls-start-playback-button {
+     opacity: 0;
+     pointer-events: none;
+     width: 5px;
+ }*/
+.IIV::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button {
+    opacity: 0;
+    pointer-events: none;
+    width: 5px;
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="./jquery.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script type="text/javascript" src="./jackScriptsV2.js" defer></script>
+    <link rel="stylesheet" href="./progressJack.css">
+    <link rel="stylesheet" href="./gridJack.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href='./css/font-awesome/css/font-awesome.min.css' rel="stylesheet" type="text/css" />
+        <style>
+
+        .rounded-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-family: 'Lato', 'Roboto', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .rounded-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        #floating-ui {
+            position: fixed;
+            bottom: 20px;
+            right: 180px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        #floating-ui .rounded-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" style="display:none" autoplay poster="JackPoster.png" onended="switchIdle()">
+    </video>
+    <audio id="myAudio" style="display:none;">
+        Your browser does not support the audio element.
+    </audio>
+
+    <video id="idleVideo" style="display:none" autoplay poster="JackPoster.png" muted loop>
+        <source src="https://agsdialogflow.s3.amazonaws.com/jack_dialogflow/Jack_Videos/idle.mp4"
+                type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <iframe id='noah-intro' style="display: block; position: absolute; z-index: 1005; left: 1%; top: 1%; width: 100%; height: 100%; border: none" src="./noah-intro.html"></iframe>
+    <iframe id='noah-finish' style="display: none; position: absolute; z-index: 1005; left: 1%; top: 1%; width: 100%; height: 100%; border: none" src="./noah-finish.html"></iframe>
+    <div style="height:auto; width:100%">
+        <div id='infoContainer'>
+            <div id='prog'>
+
+                <h1 class="title-wrapper">Noah's Background</h1>
+                <div class="messageList">
+                    <div class="alert alert-info">
+                        <b>Noah Smith is a 16 year old White male, Sophomore in high school, who lives in New York with his mother in a rented apartment.</b>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="potentialquestions" style="display: none; width: 300px; margin-left: auto; margin-right: 335px; padding-top:16%">
+                <h class=title-wrapper>Do you mean to ask?</h>
+                <div class=messageList>
+                    <div style="width:100%">
+                        <ul id="questionList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <button onclick="addToBar('Illness')" type="button">logList</button> -->
+
+</html>
+
+<script>
+$(document).ready(function () {
+    setTimeout(function () {
+        showNoah(); // Ensure video appears
+
+        const dfMessenger = document.querySelector("df-messenger");
+
+        if (dfMessenger) {
+            const dfChat = dfMessenger.shadowRoot.querySelector("df-messenger-chat");
+
+            if (dfChat) {
+                const dfChatWrapper = dfChat.shadowRoot.querySelector(".chat-wrapper");
+
+                if (dfChatWrapper) {
+                    dfChatWrapper.style.width = "300px"; // Set your preferred width
+                    dfChatWrapper.style.maxWidth = "300px"; 
+                }
+            }
+        }
+    }, 1000); // Small delay to ensure df-messenger loads
+});
+
+    function showNoah() {
+        document.getElementById("myVideo").style.display = "block";
+        document.getElementById("idleVideo").style.display = "block";
+    }
+</script>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+<style>
+        df-messenger {
+            --df-messenger-button-titlebar-color: #007BFF; /* Modify button and title bar color */
+        }
+
+</style>
+
+
+<div id="floating-ui">
+  <button class="rounded-btn" onclick="redirectPage()">End Interaction</button>
+</div>
+
+  <df-messenger
+    chat-title="Chat History with Noah"
+    agent-id="79d64c0c-6ee5-4698-99bd-1dc5d2d7109f"
+    expand="true"
+    language-code="en"
+  ></df-messenger>
